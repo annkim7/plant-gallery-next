@@ -1,20 +1,19 @@
 'use client'
 
-import { ObjectId } from 'mongodb'
+import { ListProps } from './page'
+import Link from 'next/link'
 
 interface ListItemProps {
-  result: {
-    _id: ObjectId | string
-    title: string
-    content: string
-  }[]
+  result: ListProps[]
 }
 
 export default function ListItem({ result }: ListItemProps) {
   return (
     <>
       {result.map((el) => (
-        <div key={el.title}>{el.title}</div>
+        <div key={el.title}>
+          <Link href={`/detail/${el._id}`}>{el.title}</Link>
+        </div>
       ))}
     </>
   )

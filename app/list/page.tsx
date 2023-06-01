@@ -1,8 +1,8 @@
 import { connectDB } from '@/util/database'
-import ListItem from './ListItem'
 import { ObjectId } from 'mongodb'
+import ListItem from './ListItem'
 
-interface ListProps {
+export interface ListProps {
   _id: ObjectId | string
   title: string
   content: string
@@ -17,7 +17,6 @@ export default async function List() {
     item._id = item._id.toString()
     return item
   })
-
 
   return (
     <div className="border border-indigo-600">
