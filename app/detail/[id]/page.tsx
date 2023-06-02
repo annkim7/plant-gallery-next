@@ -24,6 +24,7 @@ export default async function Detail(props: DetailProps) {
   return (
     <div>
       <h4>{result.title}</h4>
+      <p>{result.content}</p>
     </div>
   )
 }
