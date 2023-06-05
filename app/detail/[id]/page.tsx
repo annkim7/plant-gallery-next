@@ -1,6 +1,6 @@
-import { connectDB } from '@/util/database'
 import { ObjectId } from 'mongodb'
 import { notFound } from 'next/navigation'
+import Item from './Item'
 
 interface DetailProps {
   params: { id: string }
@@ -12,19 +12,9 @@ export default async function Detail(props: DetailProps) {
     return notFound()
   }
 
-  let db = (await connectDB).db('plant')
-  let result = await db
-    .collection('post')
-    .findOne({ _id: new ObjectId(props.params.id) })
-
-  if (result === null) {
-    return notFound()
-  }
-
   return (
     <div>
-      <h4>{result.title}</h4>
-      <p>{result.content}</p>
+      <Item id={props.params.id} />
     </div>
   )
 }

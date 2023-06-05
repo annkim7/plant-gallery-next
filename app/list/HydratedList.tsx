@@ -1,7 +1,7 @@
 import { dehydrate } from '@tanstack/query-core'
 import getQueryClient from '@/util/getQueryClient'
 import HydrateOnClient from '@/util/hydrateOnClient'
-import { getList } from './fetch'
+import { getList } from '@/hook/post'
 import ListItem from './ListItem'
 
 export default async function HydratedList() {
