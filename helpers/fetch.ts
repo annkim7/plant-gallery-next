@@ -34,6 +34,18 @@ export const addItem = async (form: { title: string; content: string }) => {
   return data
 }
 
+export const editItem = async (form: ListData) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/post/edit`,
+    {
+      method: 'POST',
+      body: JSON.stringify(form),
+    },
+  )
+  const data = await res.json()
+  return data
+}
+
 export const deleteItem = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/post/delete`,

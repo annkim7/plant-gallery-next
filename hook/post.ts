@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { deleteItem, getItem, getList } from '@/helpers/fetch'
-import { addItem } from '../helpers/fetch'
+import { addItem, editItem } from '../helpers/fetch'
 
 export const useGetList = () => {
   return useQuery({
@@ -24,6 +24,21 @@ export const useAddItem = () => {
   const router = useRouter()
 
   return useMutation(addItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['list'])
+      router.push('/list')
+    },
+    onError: ({ message }) => {
+      console.log(message)
+    },
+  })
+}
+
+export const useEditItem = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation(editItem, {
     onSuccess: () => {
       queryClient.invalidateQueries(['list'])
       router.push('/list')
