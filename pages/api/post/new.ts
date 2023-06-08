@@ -12,8 +12,8 @@ export default async function handler(
 
     try {
       const db = (await connectDB).db('plant')
-      let result = await db.collection('post').insertOne(req.body)
-      return res.redirect(302, '/list')
+      let result = await db.collection('post').insertOne(JSON.parse(req.body))
+      return res.status(200).json('저장완료')
     } catch (err) {
       return res.status(401).json('wrong request')
     }

@@ -8,12 +8,14 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     const db = (await connectDB).db('plant')
+    const { _id, title, content } = JSON.parse(req.body)
     let result = await db
       .collection('post')
       .updateOne(
-        { _id: new ObjectId(req.body._id) },
-        { $set: { title: req.body.title, content: req.body.content } },
+        { _id: new ObjectId(_id) },
+        { $set: { title: title, content: content } },
       )
-    return res.redirect(302, '/list')
+
+    return res.status(200).json('수정완료')
   }
 }

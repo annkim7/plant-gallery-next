@@ -1,16 +1,15 @@
 'use client'
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
-import { getList, deleteItem } from '@/hook/post'
+import { useGetList, useDeleteItem } from '@/hook/post'
 
 export default function ListItem() {
-  const { data } = useQuery(['list'], getList, { staleTime: 10 * 1000 })
-  const mutation = useMutation({ mutationFn: deleteItem })
+  const { data } = useGetList()
+  const { mutate } = useDeleteItem()
 
   const handleDelete = (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault()
-    mutation.mutate(id)
+    mutate(id)
   }
 
   return (
