@@ -1,35 +1,65 @@
-import { ObjectId } from 'mongodb'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
+import { deleteItem, getItem, getList } from '@/helpers/fetch'
+import { addItem, editItem } from '../helpers/fetch'
 
-type ListData = {
-  _id: ObjectId
-  title: string
-  content: string
+export const useGetList = () => {
+  return useQuery({
+    queryKey: ['list'],
+    queryFn: getList,
+    staleTime: 10 * 1000,
+  })
 }
 
-export const getList = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/posts/list`,
-  )
-  const data = await res.json()
-  return data as ListData[]
+export const useGetItem = (id: string) => {
+  return useQuery({
+    queryKey: ['item', id],
+    queryFn: () => getItem(id),
+    staleTime: 10 * 1000,
+  })
 }
 
-export const getItem = async (id: string) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/posts/${id}`,
-  )
-  const data = await res.json()
-  return data as ListData
-}
+export const useAddItem = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
 
-export const deleteItem = async (id: string) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/post/delete`,
-    {
-      method: 'POST',
-      body: `${id}`,
+  return useMutation(addItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['list'])
+      router.push('/list')
     },
-  )
-  const data = await res.json()
-  return data
+    onError: ({ message }) => {
+      console.log(message)
+    },
+  })
+}
+
+export const useEditItem = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation(editItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['list'])
+      router.push('/list')
+    },
+    onError: ({ message }) => {
+      console.log(message)
+    },
+  })
+}
+
+export const useDeleteItem = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation(deleteItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['list'])
+      router.push('/list')
+    },
+    onError: ({ message }) => {
+      console.log(message)
+    },
+  })
 }
