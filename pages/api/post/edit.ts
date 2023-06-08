@@ -15,7 +15,7 @@ export default async function handler(
         { _id: new ObjectId(_id) },
         { $set: { title: title, content: content } },
       )
-    // return res.redirect(302, '/list')
+
     return res.status(200).json('수정완료')
   }
 }

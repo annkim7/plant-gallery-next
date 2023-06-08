@@ -3,6 +3,7 @@
 import { useAddItem } from '@/hook/post'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
+import Button from '../../components/Button'
 
 export default function Form() {
   const { mutate } = useAddItem()
@@ -22,7 +23,7 @@ export default function Form() {
     <form onSubmit={handleForm}>
       <Input label="title" values={titleBind} />
       <Input label="content" values={contentBind} />
-      <button type="submit">버튼</button>
+      <Button label="등록" type="submit" />
     </form>
   )
 }

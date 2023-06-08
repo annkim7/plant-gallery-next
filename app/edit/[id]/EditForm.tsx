@@ -2,6 +2,7 @@ import { ObjectId } from 'mongodb'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
 import { useEditItem } from '@/hook/post'
+import Button from '@/components/Button'
 
 interface EditFormProps {
   datum: {
@@ -30,7 +31,7 @@ export default function EditForm({ datum }: EditFormProps) {
     <form onSubmit={handleEdit}>
       <Input label="title" values={titleBind} />
       <Input label="content" values={contentBind} />
-      <button type="submit">전송</button>
+      <Button label="수정" type="submit" />
     </form>
   )
 }
