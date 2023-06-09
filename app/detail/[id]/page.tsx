@@ -13,8 +13,8 @@ export default async function Detail(props: DetailProps) {
   }
 
   return (
-    <div>
+    <article className="py-8 px-2.5">
       <Item id={props.params.id} />
-    </div>
+    </article>
   )
 }
