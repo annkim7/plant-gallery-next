@@ -3,8 +3,8 @@ import Logo from './Logo'
 
 export default function Nav() {
   return (
-    <header className="px-3.5 py-3.5 border-b border-slate-200">
-      <nav className="max-w-5xl flex mx-auto justify-between">
+    <header className="border-b border-slate-200">
+      <nav className="max-w-5xl flex px-3.5 py-3.5 mx-auto justify-between">
         <h2>
           <Link href="/" className="logo">
             <Logo />
