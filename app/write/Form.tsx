@@ -21,9 +21,12 @@ export default function Form() {
 
   return (
     <form onSubmit={handleForm}>
-      <Input label="title" values={titleBind} />
-      <Input label="content" values={contentBind} />
-      <Button label="등록" type="submit" />
+      <Input label="제목" values={titleBind} />
+      <Input label="내용" values={contentBind} />
+
+      <div className="flex mt-6 mb-10 justify-center">
+        <Button label="등록" type="submit" />
+      </div>
     </form>
   )
 }

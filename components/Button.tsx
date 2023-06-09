@@ -9,7 +9,7 @@ export default function Button({ type, label, func }: ButtonProps) {
     <button
       type={type}
       onClick={func}
-      className="p-1.5 bg-blue-400 text-white text-xs rounded-sm"
+      className="w-16 p-1.5 bg-blue-400 text-white text-xs rounded-sm"
     >
       {label}
     </button>

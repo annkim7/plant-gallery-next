@@ -16,7 +16,10 @@ export default function ListItem() {
     <>
       {data &&
         data.map((el) => (
-          <div key={el._id.toString()}>
+          <div
+            key={el._id.toString()}
+            className="px-3 py-3 border border-zinc-200 rounded"
+          >
             <Link href={`/detail/${el._id}`}>{el.title}</Link>
             <Link href={`/edit/${el._id}`}>✏️</Link>
             <button type="button" onClick={(e) => handleDelete(e, `${el._id}`)}>

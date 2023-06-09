@@ -29,9 +29,12 @@ export default function EditForm({ datum }: EditFormProps) {
 
   return (
     <form onSubmit={handleEdit}>
-      <Input label="title" values={titleBind} />
-      <Input label="content" values={contentBind} />
-      <Button label="수정" type="submit" />
+      <Input label="제목" values={titleBind} />
+      <Input label="내용" values={contentBind} />
+
+      <div className="flex mt-6 mb-10 justify-center">
+        <Button label="수정" type="submit" />
+      </div>
     </form>
   )
 }
