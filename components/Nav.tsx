@@ -12,7 +12,7 @@ export default function Nav() {
         </h2>
         <ul className="flex shrink-0 gap-4">
           {['list', 'write'].map((el) => (
-            <li key="el">
+            <li key={el}>
               <Link
                 href={`/${el}`}
                 className="text-sm text-slate-700 font-normal font-caveat"

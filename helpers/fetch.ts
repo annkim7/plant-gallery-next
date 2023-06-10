@@ -4,6 +4,7 @@ type ListData = {
   _id: ObjectId
   title: string
   content: string
+  img: Blob
 }
 
 export const getList = async () => {
