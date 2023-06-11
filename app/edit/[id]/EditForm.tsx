@@ -33,13 +33,13 @@ export default function EditForm({ datum }: EditFormProps) {
     <form onSubmit={handleEdit}>
       <Input label="제목" values={titleBind} />
       <Input label="내용" values={contentBind} />
-      <div className="relative w-full h-16">
+      <div className="relative w-full pt-[100%]">
         <Image src={datum.img} alt={`${datum.title} 이미지`} fill />
       </div>
 
       <input type="file" accept="image/*" onChange={handleFileChange} />
       {src && (
-        <div className="relative w-full h-16">
+        <div className="relative w-60 h-60 mx-auto">
           <Image src={src} alt="업로드한 이미지" fill />
         </div>
       )}
