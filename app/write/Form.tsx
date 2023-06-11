@@ -3,18 +3,23 @@
 import { useAddItem } from '@/hook/post'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
+import Image from 'next/image'
+import useUpload from '../../hook/upload'
 import Button from '../../components/Button'
 
 export default function Form() {
   const { mutate } = useAddItem()
   const [title, titleBind] = useInput('')
   const [content, contentBind] = useInput('')
+  const { src, handleFileChange } = useUpload()
 
   const handleForm: React.FormEventHandler = (e) => {
     e.preventDefault()
+
     const formContent = {
       title,
       content,
+      img: src,
     }
     mutate(formContent)
   }
@@ -23,6 +28,12 @@ export default function Form() {
     <form onSubmit={handleForm}>
       <Input label="제목" values={titleBind} />
       <Input label="내용" values={contentBind} />
+      <input type="file" accept="image/*" onChange={handleFileChange} />
+      {src && (
+        <div className="relative w-16 h-16">
+          <Image src={src} alt="업로드한 이미지" fill />
+        </div>
+      )}
 
       <div className="flex mt-6 mb-10 justify-center">
         <Button label="등록" type="submit" />
