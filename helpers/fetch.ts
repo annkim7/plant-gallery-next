@@ -1,10 +1,10 @@
 import { ObjectId } from 'mongodb'
 
-type ListData = {
+export type ListData = {
   _id: ObjectId
   title: string
   content: string
-  img: Blob
+  img: string
 }
 
 export const getList = async () => {

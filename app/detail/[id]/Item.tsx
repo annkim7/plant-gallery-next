@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Button from '@/components/Button'
 import { useGetItem, useDeleteItem } from '@/hook/post'
+import Image from 'next/image'
 
 interface ItemProps {
   id: string
@@ -23,6 +24,11 @@ export default function Item({ id }: ItemProps) {
         {data?.title}
       </h3>
       <p>{data?.content}</p>
+      {data?.img && (
+        <div className="relative w-full h-16">
+          <Image src={data?.img} alt={`${data?.title} 이미지`} fill />
+        </div>
+      )}
 
       <div className="flex mt-10 mb-3 justify-end gap-2">
         <Link href={`/edit/${id}`} className="text-slate-400 text-sm">

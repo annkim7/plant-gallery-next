@@ -1,11 +1,6 @@
 import aws from 'aws-sdk'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-interface PresignedPost {
-  fields: Record<string, string>
-  url: string
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
