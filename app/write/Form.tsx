@@ -30,7 +30,7 @@ export default function Form() {
       <Input label="내용" values={contentBind} />
       <input type="file" accept="image/*" onChange={handleFileChange} />
       {src && (
-        <div className="relative w-16 h-16">
+        <div className="relative w-60 h-60 mx-auto">
           <Image src={src} alt="업로드한 이미지" fill />
         </div>
       )}

@@ -25,7 +25,7 @@ export default function Item({ id }: ItemProps) {
       </h3>
       <p>{data?.content}</p>
       {data?.img && (
-        <div className="relative w-full h-16">
+        <div className="relative w-full pt-[100%]">
           <Image src={data?.img} alt={`${data?.title} 이미지`} fill />
         </div>
       )}
