@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+interface resProps extends Response {
+  fields: Record<string, string>
+}
+
 export default function useUpload() {
   const [src, setSrc] = useState('')
 
@@ -17,10 +21,10 @@ export default function useUpload() {
 
     const formData = new FormData()
     Object.entries({
-      ...(res as any).fields,
+      ...(res as resProps).fields,
       file,
     }).forEach(([key, value]) => {
-      formData.append(key, value as any)
+      formData.append(key, value as string | Blob)
     })
 
     let result = await fetch(res.url, {

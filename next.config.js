@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: `/${process.env.BUCKET_NAME}/**`,
       },
+      {
+        protocol: 'http',
+        hostname: 'k.kakaocdn.net',
+        port: '',
+        pathname: `/**`,
+      },
     ],
   },
 }
