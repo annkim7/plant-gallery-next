@@ -4,10 +4,15 @@ import { useAddItem } from '@/hook/post'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
 import Image from 'next/image'
-import useUpload from '../../hook/upload'
-import Button from '../../components/Button'
+import useUpload from '@/hook/upload'
+import Button from '@/components/Button'
+import { Session } from 'next-auth'
 
-export default function Form() {
+interface FormProps {
+  info: Session | null
+}
+
+export default function Form({ info }: FormProps) {
   const { mutate } = useAddItem()
   const [title, titleBind] = useInput('')
   const [content, contentBind] = useInput('')
@@ -20,6 +25,7 @@ export default function Form() {
       title,
       content,
       img: src,
+      author: info?.user?.email,
     }
     mutate(formContent)
   }
