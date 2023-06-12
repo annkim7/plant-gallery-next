@@ -5,12 +5,14 @@ import Button from '@/components/Button'
 import Image from 'next/image'
 import useUpload from '../../../hook/upload'
 import { ListData } from '@/helpers/fetch'
+import { Session } from 'next-auth'
 
 interface EditFormProps {
   datum: ListData
+  info: Session | null
 }
 
-export default function EditForm({ datum }: EditFormProps) {
+export default function EditForm({ datum, info }: EditFormProps) {
   const { mutate } = useEditItem()
   const [title, titleBind] = useInput(datum.title)
   const [content, contentBind] = useInput(datum.content)
@@ -23,11 +25,11 @@ export default function EditForm({ datum }: EditFormProps) {
       title,
       content,
       img: src === '' ? datum.img : src,
+      author: info?.user?.email,
+      avatar: info?.user?.image,
     }
     mutate(formContent)
   }
-
-  console.log(src)
 
   return (
     <form onSubmit={handleEdit}>
