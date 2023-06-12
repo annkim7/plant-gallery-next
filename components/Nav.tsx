@@ -29,7 +29,7 @@ export default function Nav({ info }: UserProps) {
             </li>
           ))}
         </ul>
-        <span> {info?.user?.name} 님 환영합니다</span>
+        {info && <span> {info?.user?.name} 님 환영합니다</span>}
         {info ? <Logout /> : <Login />}
       </nav>
     </header>
