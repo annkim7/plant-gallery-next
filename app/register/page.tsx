@@ -1,12 +1,14 @@
+import MemForm from './MemForm'
+
 export default function Register() {
   return (
-    <div>
-      <form method="POST" action="/api/auth/signup">
-        <input name="name" type="text" placeholder="이름" />
-        <input name="email" type="text" placeholder="이메일" />
-        <input name="password" type="password" placeholder="비번" />
-        <button type="submit">id/pw 가입요청</button>
-      </form>
-    </div>
+    <article className="py-8 px-2.5">
+      <div className="max-w-lg mx-auto px-5 py-3 border border-zinc-200 rounded-lg">
+        <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
+          회원가입
+        </h3>
+        <MemForm />
+      </div>
+    </article>
   )
 }
