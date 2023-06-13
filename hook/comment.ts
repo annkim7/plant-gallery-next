@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useGetCommentList = (id: string) => {
   return useQuery({
-    queryKey: ['comment'],
+    queryKey: ['comment', id],
     queryFn: () => getComment(id),
     staleTime: 10 * 1000,
   })
