@@ -6,7 +6,6 @@ export type ListData = {
   content: string
   img: string
   author: string | undefined | null
-  avatar: string | undefined | null
 }
 
 export const getList = async () => {
