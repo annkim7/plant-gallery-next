@@ -26,11 +26,11 @@ export default function Item({ id, info }: ItemProps) {
       <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
         {data?.title}
       </h3>
-      {data?.avatar && (
+      {/* {data?.avatar && (
         <div className="relative w-16 h-16">
           <Image src={data?.avatar} alt={`${data?.author} 이미지`} fill />
         </div>
-      )}
+      )} */}
       <span>By {data?.author}</span>
       <p>{data?.content}</p>
       {data?.img && (

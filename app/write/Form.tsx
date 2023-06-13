@@ -26,7 +26,6 @@ export default function Form({ info }: FormProps) {
       content,
       img: src,
       author: info?.user?.email,
-      avatar: info?.user?.image,
     }
     mutate(formContent)
   }
