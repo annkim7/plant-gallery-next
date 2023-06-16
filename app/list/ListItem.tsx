@@ -3,12 +3,14 @@
 import Link from 'next/link'
 import { useGetList } from '@/hook/post'
 import Image from 'next/image'
+import Loading from '../loading'
 
 export default function ListItem() {
-  const { data } = useGetList()
+  const { data, isLoading } = useGetList()
 
   return (
     <>
+      {isLoading && <Loading />}
       {data &&
         data.map((el) => (
           <div key={el._id.toString()}>

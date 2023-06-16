@@ -20,6 +20,9 @@ export default async function handler(
       let result = await db
         .collection('post')
         .deleteOne({ _id: new ObjectId(req.body) })
+      let comment = await db
+        .collection('comment')
+        .deleteMany({ parent: new ObjectId(req.body) })
 
       return res.status(200).json('삭제완료')
     } else {
