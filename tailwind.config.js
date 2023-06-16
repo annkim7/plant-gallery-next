@@ -16,6 +16,9 @@ module.exports = {
         roboto: ['var(--roboto)'],
         caveat: ['var(--caveat)'],
       },
+      gridTemplateColumns: {
+        masonry: 'repeat(auto-fit,minmax(2rem,1fr))',
+      },
     },
   },
   plugins: [],

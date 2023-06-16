@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 
-type CommentData = {
+export type CommentData = {
   _id: ObjectId
   content: string
   parent: string
