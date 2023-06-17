@@ -5,12 +5,14 @@ declare module 'next-auth' {
   interface Session {
     name: string
     email: string
+    image: string
   }
 
   interface User {
     name: string
     email: string
     password: string
+    image: string
   }
 }
 
@@ -19,5 +21,6 @@ declare module 'next-auth/jwt' {
     user: Record<string, {}>
     name: string
     email: string
+    image: string
   }
 }

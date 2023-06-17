@@ -7,12 +7,12 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === 'POST') {
-    let { name, email, password } = JSON.parse(req.body)
+    let { name, email, password, image } = JSON.parse(req.body)
     const hash = await bcrypt.hash(password, 10)
     password = hash
 
     let db = (await connectDB).db('plant')
-    await db.collection('user_cred').insertOne({ name, email, password })
+    await db.collection('user_cred').insertOne({ name, email, password, image })
 
     res.status(200).json('회원가입 완료')
   }

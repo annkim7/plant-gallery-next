@@ -57,6 +57,7 @@ export const authOptions: NextAuthOptions = {
         token.user = {}
         token.user.name = user.name
         token.user.email = user.email
+        token.user.image = user.image
       }
       return token
     },

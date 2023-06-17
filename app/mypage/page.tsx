@@ -1,8 +1,8 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
-import Image from 'next/image'
 import MyList from './MyList'
 import MyComm from './MyComm'
+import Img from '@/components/Img'
 
 export default async function Mypage() {
   let session = await getServerSession(authOptions)
@@ -15,15 +15,12 @@ export default async function Mypage() {
             <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
               마이페이지
             </h3>
-            {session?.user?.image && (
-              <div className="relative w-16 h-16">
-                <Image
-                  src={session?.user?.image}
-                  alt={`${session?.user?.name} 이미지`}
-                  fill
-                />
-              </div>
-            )}
+            <Img
+              width="16"
+              height="16"
+              src={session?.user?.image}
+              alt={session?.user?.name}
+            />
             <div>
               <strong>닉네임</strong>
               <span>{session?.user?.name}</span>

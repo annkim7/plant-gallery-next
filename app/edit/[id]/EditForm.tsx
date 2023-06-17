@@ -1,11 +1,12 @@
-import useInput from '@/hook/input'
-import Input from '@/components/Input'
-import { useEditItem } from '@/hook/post'
-import Button from '@/components/Button'
-import Image from 'next/image'
-import useUpload from '../../../hook/upload'
-import { ListData } from '@/helpers/fetch'
 import { Session } from 'next-auth'
+import { ListData } from '@/helpers/fetch'
+import useInput from '@/hook/input'
+import { useEditItem } from '@/hook/post'
+import useUpload from '@/hook/upload'
+import Input from '@/components/Input'
+import Img from '@/components/Img'
+import Upload from '@/components/Upload'
+import Button from '@/components/Button'
 
 interface EditFormProps {
   datum: ListData
@@ -26,7 +27,6 @@ export default function EditForm({ datum, info }: EditFormProps) {
       content,
       img: src === '' ? datum.img : src,
       author: info?.user?.email,
-      avatar: info?.user?.image,
     }
     mutate(formContent)
   }
@@ -35,16 +35,14 @@ export default function EditForm({ datum, info }: EditFormProps) {
     <form onSubmit={handleEdit}>
       <Input label="제목" values={titleBind} />
       <Input label="내용" values={contentBind} />
-      <div className="relative w-full pt-[100%]">
-        <Image src={datum.img} alt={`${datum.title} 이미지`} fill />
+      <div className="flex mt-6 items-center justify-center">
+        <Img width="auto" height="auto" src={datum.img} alt={datum.title} />
       </div>
 
-      <input type="file" accept="image/*" onChange={handleFileChange} />
-      {src && (
-        <div className="relative w-60 h-60 mx-auto">
-          <Image src={src} alt="업로드한 이미지" fill />
-        </div>
-      )}
+      <Upload event={handleFileChange} />
+      <div className="flex mt-6 items-center justify-center">
+        <Img width="auto" height="auto" src={src} alt={'업로드한'} />
+      </div>
 
       <div className="flex mt-6 mb-10 justify-center">
         <Button label="수정" type="submit" />

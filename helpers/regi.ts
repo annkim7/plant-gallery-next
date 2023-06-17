@@ -2,6 +2,7 @@ type MemberData = {
   name: string
   email: string
   password: string
+  image: string
 }
 
 export const addMember = async (form: MemberData) => {
