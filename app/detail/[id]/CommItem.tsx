@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { CommentData } from '@/helpers/comm'
 import { useEditComment, useDeleteComment } from '@/hook/comment'
-import Input from '@/components/Input'
 import useInput from '@/hook/input'
+import Input from '@/components/Input'
 
 interface CommItemProps {
   datum: CommentData
@@ -9,8 +10,13 @@ interface CommItemProps {
 
 export default function CommItem({ datum }: CommItemProps) {
   const [comment, commBind] = useInput(datum.content)
+  const [active, setActive] = useState(false)
   const { mutate: editMutate } = useEditComment()
   const { mutate: deleteMutate } = useDeleteComment()
+
+  const handleInput = () => {
+    setActive(!active)
+  }
 
   const handleCommEdit = () => {
     editMutate({
@@ -28,13 +34,23 @@ export default function CommItem({ datum }: CommItemProps) {
 
   return (
     <div>
-      <Input label="댓글 수정" values={commBind} />
-      <button type="button" onClick={handleCommEdit}>
+      <button type="button" onClick={handleInput}>
         수정
       </button>
       <button type="button" onClick={() => handleCommDel(`${datum._id}`)}>
         삭제
       </button>
+      {active && (
+        <div>
+          <Input label="댓글 수정" values={commBind} />
+          <button type="button" onClick={handleCommEdit}>
+            확인
+          </button>
+          <button type="button" onClick={handleInput}>
+            닫기
+          </button>
+        </div>
+      )}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import MyList from './MyList'
 import MyComm from './MyComm'
 import Img from '@/components/Img'
+import MyLike from './MyLike'
 
 export default async function Mypage() {
   let session = await getServerSession(authOptions)
@@ -31,6 +32,7 @@ export default async function Mypage() {
             </div>
             <MyList info={session} />
             <MyComm info={session} />
+            <MyLike info={session} />
           </>
         ) : (
           <div>로그인해주세요!</div>

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Session } from 'next-auth'
 import Comment from './Comment'
 import Author from './Author'
+import Like from '@/components/Like'
 
 interface ItemProps {
   id: string
@@ -29,6 +30,7 @@ export default function Item({ id, info }: ItemProps) {
       </h3>
 
       {data && <Author email={data?.author || ''} />}
+      {data && <Like id={`${data?._id}`} access={info ? true : false} />}
 
       <p>{data?.content}</p>
       {data?.img && (

@@ -5,7 +5,6 @@ import { JWT } from 'next-auth/jwt'
 import KakaoProvider from 'next-auth/providers/kakao'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { WithId } from 'mongodb'
 
 export const authOptions: NextAuthOptions = {
   providers: [

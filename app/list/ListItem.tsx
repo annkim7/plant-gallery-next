@@ -4,8 +4,14 @@ import Link from 'next/link'
 import { useGetList } from '@/hook/post'
 import Loading from '../loading'
 import Img from '@/components/Img'
+import Like from '@/components/Like'
+import { Session } from 'next-auth'
 
-export default function ListItem() {
+interface ListItemProps {
+  info: Session | null
+}
+
+export default function ListItem({ info }: ListItemProps) {
   const { data, isLoading } = useGetList()
 
   return (
@@ -20,6 +26,7 @@ export default function ListItem() {
             >
               <Img width="full" height="auto" src={el.img} alt={el.title} />
             </Link>
+            <Like id={`${el._id}`} access={info ? true : false} />
           </div>
         ))}
     </>
