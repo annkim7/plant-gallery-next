@@ -6,6 +6,7 @@ import { useGetItem, useDeleteItem } from '@/hook/post'
 import Image from 'next/image'
 import { Session } from 'next-auth'
 import Comment from './Comment'
+import Author from './Author'
 
 interface ItemProps {
   id: string
@@ -26,18 +27,16 @@ export default function Item({ id, info }: ItemProps) {
       <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
         {data?.title}
       </h3>
-      {/* {data?.avatar && (
-        <div className="relative w-16 h-16">
-          <Image src={data?.avatar} alt={`${data?.author} 이미지`} fill />
-        </div>
-      )} */}
-      <span>By {data?.author}</span>
+
+      {data && <Author email={data?.author || ''} />}
+
       <p>{data?.content}</p>
       {data?.img && (
         <div className="relative w-full pt-[100%]">
           <Image src={data?.img} alt={`${data?.title} 이미지`} fill />
         </div>
       )}
+
       <div className="flex mt-10 mb-3 justify-end gap-2">
         {info?.user?.email === data?.author && (
           <>
@@ -52,6 +51,7 @@ export default function Item({ id, info }: ItemProps) {
           </>
         )}
       </div>
+
       <Comment id={id} info={info} />
     </div>
   )

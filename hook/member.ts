@@ -1,6 +1,14 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { addMember } from '../helpers/regi'
+import { getMember, addMember } from '../helpers/regi'
+
+export const useGetMember = (email: string) => {
+  return useQuery({
+    queryKey: ['member', email],
+    queryFn: () => getMember(email),
+    staleTime: 10 * 1000,
+  })
+}
 
 export const useAddMember = () => {
   const queryClient = useQueryClient()
