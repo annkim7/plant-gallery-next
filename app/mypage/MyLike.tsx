@@ -1,7 +1,6 @@
 'use client'
 
 import { useGetMyLike } from '@/hook/mypage'
-import { EKS } from 'aws-sdk'
 import { Session } from 'next-auth'
 import Link from 'next/link'
 
@@ -11,8 +10,6 @@ interface ListProps {
 
 export default function MyLike({ info }: ListProps) {
   const { data } = useGetMyLike(info?.user?.email)
-
-  console.log(data)
 
   return (
     <div>
