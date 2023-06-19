@@ -9,5 +9,9 @@ export default function useInput(initial: string) {
       setValue(e.target.value),
   }
 
-  return [value, bind] as const
+  const reset = () => {
+    setValue('')
+  }
+
+  return [value, bind, reset] as const
 }

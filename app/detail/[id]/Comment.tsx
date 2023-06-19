@@ -5,6 +5,7 @@ import { useAddComment, useGetCommentList } from '@/hook/comment'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
+import CommItem from './CommItem'
 
 interface CommentProps {
   id: string
@@ -12,7 +13,7 @@ interface CommentProps {
 }
 
 export default function Comment({ id, info }: CommentProps) {
-  const [comment, commBind] = useInput('')
+  const [comment, commBind, comReset] = useInput('')
   const { data } = useGetCommentList(id)
   const { mutate } = useAddComment()
 
@@ -21,6 +22,7 @@ export default function Comment({ id, info }: CommentProps) {
       _id: id,
       comment,
     })
+    comReset()
   }
 
   return (
@@ -30,7 +32,10 @@ export default function Comment({ id, info }: CommentProps) {
           (data.length > 0
             ? data.map((el) => (
                 <div key={`${el._id}`}>
-                  {el.content} - {el.name}
+                  <span>
+                    {el.content} - {el.name}
+                  </span>
+                  {info?.user?.email === el.author && <CommItem datum={el} />}
                 </div>
               ))
             : '댓글없음')}

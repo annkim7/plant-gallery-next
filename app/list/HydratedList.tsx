@@ -4,14 +4,20 @@ import HydrateOnClient from '@/util/hydrateOnClient'
 import { getList } from '@/helpers/fetch'
 import ListItem from './ListItem'
 
-export default async function HydratedList() {
+import { Session } from 'next-auth'
+
+interface HyProps {
+  info: Session | null
+}
+
+export default async function HydratedList({ info }: HyProps) {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery(['list'], getList)
   const dehydratedState = dehydrate(queryClient)
 
   return (
     <HydrateOnClient state={dehydratedState}>
-      <ListItem />
+      <ListItem info={info} />
     </HydrateOnClient>
   )
 }
