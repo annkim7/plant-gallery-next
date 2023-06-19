@@ -1,42 +1,46 @@
+'use client'
+
 import { Session } from 'next-auth'
-import { ListData } from '@/helpers/fetch'
 import useInput from '@/hook/input'
-import { useEditItem } from '@/hook/post'
 import useUpload from '@/hook/upload'
 import Input from '@/components/Input'
 import Img from '@/components/Img'
 import Upload from '@/components/Upload'
 import Button from '@/components/Button'
+import { useEditMember } from '@/hook/member'
 
 interface EditFormProps {
-  datum: ListData
   info: Session | null
 }
 
-export default function EditForm({ datum, info }: EditFormProps) {
-  const { mutate } = useEditItem()
-  const [title, titleBind] = useInput(datum.title)
-  const [content, contentBind] = useInput(datum.content)
+export default function InfoForm({ info }: EditFormProps) {
+  const { mutate } = useEditMember()
+  const [name, nameBind] = useInput(info?.user?.name || '')
+  const [password, passBind] = useInput('')
   const { src, handleFileChange } = useUpload()
 
   const handleEdit: React.FormEventHandler = (e) => {
     e.preventDefault()
     const formContent = {
-      _id: datum._id,
-      title,
-      content,
-      img: src === '' ? datum.img : src,
-      author: info?.user?.email,
+      name,
+      email: info?.user?.email,
+      password,
+      image: src === '' ? info?.user?.image : src,
     }
     mutate(formContent)
   }
 
   return (
     <form onSubmit={handleEdit}>
-      <Input label="제목" values={titleBind} />
-      <Input label="내용" values={contentBind} />
+      <Input label="닉네임" values={nameBind} />
+      <Input label="비밀번호" values={passBind} />
       <div className="flex mt-6 items-center justify-center">
-        <Img width="auto" height="auto" src={datum.img} alt={datum.title} />
+        <Img
+          width="auto"
+          height="auto"
+          src={info?.user?.image}
+          alt={info?.user?.name}
+        />
       </div>
 
       <Upload event={handleFileChange} />

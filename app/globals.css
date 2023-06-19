@@ -22,6 +22,7 @@
 }
 
 body {
+  overflow: scroll;
   margin: 0;
   padding: 0;
   color: rgb(var(--foreground-rgb));

@@ -1,10 +1,10 @@
 import { connectDB } from '@/util/database'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import NextAuth, { NextAuthOptions, Session, User } from 'next-auth'
+import NextAuth, { Awaitable, NextAuthOptions, Session, User } from 'next-auth'
+import { JWT } from 'next-auth/jwt'
 import KakaoProvider from 'next-auth/providers/kakao'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { JWT } from 'next-auth/jwt'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -18,12 +18,17 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' },
       },
-      async authorize(credentials: any) {
+      async authorize(
+        credentials: Record<'email' | 'password', string> | undefined,
+      ): Promise<User | null> {
+        if (credentials === undefined) {
+          return null
+        }
         let db = (await connectDB).db('plant')
 
         let user = await db
           .collection('user_cred')
-          .findOne({ email: credentials.email })
+          .findOne<User>({ email: credentials.email })
         if (!user) {
           console.log('존재하지 않는 이메일입니다')
           return null
@@ -37,7 +42,7 @@ export const authOptions: NextAuthOptions = {
           console.log('비밀번호가 다릅니다')
           return null
         }
-        return user as any
+        return user
       },
     }),
   ],
@@ -51,6 +56,7 @@ export const authOptions: NextAuthOptions = {
         token.user = {}
         token.user.name = user.name
         token.user.email = user.email
+        token.user.image = user.image
       }
       return token
     },

@@ -1,5 +1,6 @@
 import { connectDB } from '@/util/database'
 import bcrypt from 'bcryptjs'
+import { ObjectId } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
@@ -12,8 +13,19 @@ export default async function handler(
     password = hash
 
     let db = (await connectDB).db('plant')
-    await db.collection('user_cred').insertOne({ name, email, password, image })
+    const foundData = await db.collection('user_cred').findOne({ email })
 
-    res.status(200).json('회원가입 완료')
+    const result = await db.collection('user_cred').updateOne(
+      { _id: new ObjectId(foundData?._id) },
+      {
+        $set: {
+          name,
+          password: password ? password : foundData?.password,
+          image,
+        },
+      },
+    )
+
+    res.status(200).json(result)
   }
 }

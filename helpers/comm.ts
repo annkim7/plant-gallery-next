@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 
-type CommentData = {
+export type CommentData = {
   _id: ObjectId
   content: string
   parent: string
@@ -22,6 +22,30 @@ export const addComment = async (form: { _id: string; comment: string }) => {
     {
       method: 'POST',
       body: JSON.stringify(form),
+    },
+  )
+  const data = await res.json()
+  return data
+}
+
+export const editComment = async (form: CommentData) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/comment/edit`,
+    {
+      method: 'POST',
+      body: JSON.stringify(form),
+    },
+  )
+  const data = await res.json()
+  return data
+}
+
+export const deleteComment = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/comment/delete`,
+    {
+      method: 'POST',
+      body: `${id}`,
     },
   )
   const data = await res.json()

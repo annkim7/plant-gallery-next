@@ -18,7 +18,7 @@ export default function Nav({ info }: UserProps) {
           </Link>
         </h2>
         <ul className="flex shrink-0 gap-4">
-          {['list', 'write'].map((el) => (
+          {['list', 'write', 'mypage', 'register'].map((el) => (
             <li key={el}>
               <Link
                 href={`/${el}`}

@@ -15,6 +15,12 @@ const nextConfig = {
         pathname: `/${process.env.BUCKET_NAME}/**`,
       },
       {
+        protocol: 'https',
+        hostname: `${process.env.BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com`,
+        port: '',
+        pathname: `/**`,
+      },
+      {
         protocol: 'http',
         hostname: 'k.kakaocdn.net',
         port: '',
