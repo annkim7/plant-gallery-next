@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getMember, addMember, editMember, deleteMember } from '../helpers/regi'
 import { useRouter } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 
 export const useGetMember = (email: string) => {
   return useQuery({
@@ -27,12 +28,11 @@ export const useAddMember = () => {
 
 export const useEditMember = () => {
   const queryClient = useQueryClient()
-  const router = useRouter()
 
   return useMutation(editMember, {
     onSuccess: () => {
       queryClient.invalidateQueries(['member'])
-      router.push('/')
+      window.location.href = '/'
     },
     onError: ({ message }) => {
       console.log(message)
@@ -42,12 +42,11 @@ export const useEditMember = () => {
 
 export const useDeleteMember = () => {
   const queryClient = useQueryClient()
-  const router = useRouter()
 
   return useMutation(deleteMember, {
     onSuccess: () => {
       queryClient.invalidateQueries(['member'])
-      router.push('/')
+      signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_FETCH_URL })
     },
     onError: ({ message }) => {
       console.log(message)

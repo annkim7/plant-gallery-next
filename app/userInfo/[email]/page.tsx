@@ -7,11 +7,11 @@ export default async function UserInfo() {
 
   return (
     <article className="py-8 px-2.5">
-      <div className="max-w-lg mx-auto px-5 py-3 border border-zinc-200 rounded-lg">
+      <div className="max-w-lg mx-auto px-5 py-3 border border-zinc-200 rounded-lg dark:border-neutral-600">
         <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
           수정하기
         </h3>
-        {session ? <InfoForm info={session} /> : <div>로그인해주세요!</div>}
+        {session ? <InfoForm /> : <div>로그인해주세요!</div>}
       </div>
     </article>
   )

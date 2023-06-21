@@ -1,16 +1,16 @@
+'use client'
+
 import Link from 'next/link'
 import Logo from './Logo'
 import Login from './Login'
 import Logout from './Logout'
-import { Session } from 'next-auth'
+import { useSession } from 'next-auth/react'
 
-interface UserProps {
-  info: Session | null
-}
+export default function Nav() {
+  const { data: session } = useSession()
 
-export default function Nav({ info }: UserProps) {
   return (
-    <header className="border-b border-slate-200">
+    <header className="border-b border-slate-200 dark:border-neutral-600">
       <nav className="max-w-5xl flex px-3.5 py-3.5 mx-auto justify-between">
         <h2>
           <Link href="/" className="logo">
@@ -29,8 +29,8 @@ export default function Nav({ info }: UserProps) {
             </li>
           ))}
         </ul>
-        {info && <span> {info?.user?.name} 님 환영합니다</span>}
-        {info ? <Logout /> : <Login />}
+        {session && <span> {session?.user?.name} 님 환영합니다</span>}
+        {session ? <Logout /> : <Login />}
       </nav>
     </header>
   )

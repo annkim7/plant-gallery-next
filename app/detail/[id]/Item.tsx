@@ -24,7 +24,7 @@ export default function Item({ id, info }: ItemProps) {
   }
 
   return (
-    <div className="max-w-lg mx-auto px-5 py-3 border border-zinc-200 rounded-lg">
+    <div className="max-w-lg mx-auto px-5 py-3 border border-zinc-200 rounded-lg dark:border-neutral-600">
       <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
         {data?.title}
       </h3>

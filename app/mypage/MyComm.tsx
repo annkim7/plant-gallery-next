@@ -1,15 +1,12 @@
 'use client'
 
 import { useGetMyComm } from '@/hook/mypage'
-import { Session } from 'next-auth'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
-interface CommProps {
-  info: Session | null
-}
-
-export default function MyComm({ info }: CommProps) {
-  const { data } = useGetMyComm(info?.user?.email)
+export default function MyComm() {
+  const { data: session } = useSession()
+  const { data } = useGetMyComm(session?.user?.email)
 
   return (
     <div>

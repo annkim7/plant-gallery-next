@@ -5,6 +5,7 @@ type MemberData = {
   image: string | null | undefined
 }
 
+
 export const getMember = async (email: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_FETCH_URL}/api/mypage/profile/${email}`,
