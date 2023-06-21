@@ -1,6 +1,5 @@
 'use client'
 
-import { Session } from 'next-auth'
 import useInput from '@/hook/input'
 import useUpload from '@/hook/upload'
 import Input from '@/components/Input'
