@@ -8,26 +8,25 @@ import Img from '@/components/Img'
 import Upload from '@/components/Upload'
 import Button from '@/components/Button'
 import { useEditMember } from '@/hook/member'
+import { useSession } from 'next-auth/react'
 
-interface EditFormProps {
-  info: Session | null
-}
-
-export default function InfoForm({ info }: EditFormProps) {
+export default function InfoForm() {
+  const { data: session, update } = useSession()
   const { mutate } = useEditMember()
-  const [name, nameBind] = useInput(info?.user?.name || '')
+  const [name, nameBind] = useInput(session?.user?.name || '')
   const [password, passBind] = useInput('')
   const { src, handleFileChange } = useUpload()
 
-  const handleEdit: React.FormEventHandler = (e) => {
+  const handleEdit: React.FormEventHandler = async (e) => {
     e.preventDefault()
     const formContent = {
       name,
-      email: info?.user?.email,
+      email: session?.user?.email,
       password,
-      image: src === '' ? info?.user?.image : src,
+      image: src === '' ? session?.user?.image : src,
     }
-    mutate(formContent)
+    await mutate(formContent)
+    await update({ name, image: src === '' ? session?.user?.image : src })
   }
 
   return (
@@ -38,8 +37,8 @@ export default function InfoForm({ info }: EditFormProps) {
         <Img
           width="auto"
           height="auto"
-          src={info?.user?.image}
-          alt={info?.user?.name}
+          src={session?.user?.image}
+          alt={session?.user?.name}
         />
       </div>
 

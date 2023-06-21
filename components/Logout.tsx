@@ -6,7 +6,7 @@ export default function Logout() {
   return (
     <button
       onClick={() => {
-        signOut()
+        signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_FETCH_URL })
       }}
     >
       로그아웃
