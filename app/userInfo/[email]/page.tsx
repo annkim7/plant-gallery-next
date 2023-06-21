@@ -11,7 +11,7 @@ export default async function UserInfo() {
         <h3 className="my-6 text-xl font-semibold text-slate-700 tracking-wide text-center">
           수정하기
         </h3>
-        {session ? <InfoForm info={session} /> : <div>로그인해주세요!</div>}
+        {session ? <InfoForm /> : <div>로그인해주세요!</div>}
       </div>
     </article>
   )
