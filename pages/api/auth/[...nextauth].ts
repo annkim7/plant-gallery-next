@@ -51,13 +51,30 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
-    jwt: async ({ token, user }: { token: JWT; user: User }): Promise<JWT> => {
+    jwt: async ({
+      token,
+      user,
+      trigger,
+      session,
+    }: {
+      token: JWT
+      user: User
+      trigger?: 'signIn' | 'update' | 'signUp'
+      session?: Session
+    }): Promise<JWT> => {
       if (user) {
         token.user = {}
         token.user.name = user.name
         token.user.email = user.email
         token.user.image = user.image
       }
+      if (trigger === 'update' && session) {
+        token.user = {
+          ...token.user,
+          ...session,
+        }
+      }
+
       return token
     },
     session: async ({
@@ -67,7 +84,10 @@ export const authOptions: NextAuthOptions = {
       session: Session
       token: JWT
     }): Promise<Session> => {
-      session.user = token.user
+      session.user = {
+        ...session.user,
+        ...token.user,
+      }
       return session
     },
   },

@@ -1,15 +1,12 @@
 'use client'
 
 import { useGetMyLike } from '@/hook/mypage'
-import { Session } from 'next-auth'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
-interface ListProps {
-  info: Session | null
-}
-
-export default function MyLike({ info }: ListProps) {
-  const { data } = useGetMyLike(info?.user?.email)
+export default function MyLike() {
+  const { data: session } = useSession()
+  const { data } = useGetMyLike(session?.user?.email)
 
   return (
     <div>

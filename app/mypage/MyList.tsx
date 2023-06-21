@@ -1,15 +1,12 @@
 'use client'
 
 import { useGetMyPost } from '@/hook/mypage'
-import { Session } from 'next-auth'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
-interface ListProps {
-  info: Session | null
-}
-
-export default function List({ info }: ListProps) {
-  const { data } = useGetMyPost(info?.user?.email)
+export default function List() {
+  const { data: session } = useSession()
+  const { data } = useGetMyPost(session?.user?.email)
 
   return (
     <div>
