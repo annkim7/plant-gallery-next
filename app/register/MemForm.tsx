@@ -39,7 +39,7 @@ export default function MemForm() {
       </div>
 
       <div className="flex mt-6 mb-10 justify-center">
-        <Button label="가입" type="submit" />
+        <Button label="가입" style="square" />
       </div>
     </form>
   )

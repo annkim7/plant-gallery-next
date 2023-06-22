@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useGetList } from '@/hook/post'
-import Loading from '../loading'
+import Loading from './loading'
 import Img from '@/components/Img'
 import Like from '@/components/Like'
 import { Session } from 'next-auth'

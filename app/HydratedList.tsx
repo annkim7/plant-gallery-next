@@ -1,10 +1,9 @@
+import { Session } from 'next-auth'
 import { dehydrate } from '@tanstack/query-core'
 import getQueryClient from '@/util/getQueryClient'
 import HydrateOnClient from '@/util/hydrateOnClient'
 import { getList } from '@/helpers/fetch'
 import ListItem from './ListItem'
-
-import { Session } from 'next-auth'
 
 interface HyProps {
   info: Session | null
