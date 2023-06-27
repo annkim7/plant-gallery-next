@@ -36,7 +36,7 @@ export default function Item({ id, info }: ItemProps) {
           <Img width="auto" height="auto" src={data.img} alt={data.title} />
         </div>
       )}
-      <p className="mt-8 py-4 border-y-2 border-zinc-200 dark:border-neutral-600">
+      <p className="mt-8 px-2 py-4 border-b-2 border-zinc-200 dark:border-neutral-600 text-neutral-600">
         {data?.content}
       </p>
 

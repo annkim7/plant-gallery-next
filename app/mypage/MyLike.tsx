@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { useGetMyLike } from '@/hook/mypage'
 import Label from '@/components/Label'
+import Board from '@/components/Board'
 
 export default function MyLike() {
   const { data: session } = useSession()
@@ -13,9 +13,7 @@ export default function MyLike() {
     <div>
       <Label label="좋아요한 글 리스트" />
       {data?.map((el) => (
-        <div key={`${el._id}`}>
-          <Link href={`/detail/${el._id}`}>{el.title}</Link>
-        </div>
+        <Board key={`${el._id}`} src={`/detail/${el._id}`} title={el.title}/>
       ))}
     </div>
   )

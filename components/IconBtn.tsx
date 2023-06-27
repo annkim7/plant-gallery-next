@@ -1,11 +1,18 @@
-import Heart from './Heart'
+import { Heart, Pencil, Trash, Plus } from './Icon'
 
-type IconStyleType = 'heart'
+type IconStyleType = 'heart' | 'edit' | 'del' | 'add'
 
 const handleIconBtnStyleType = (type: IconStyleType) => {
   switch (type) {
+    case 'edit':
+      return <Pencil />
     case 'heart':
       return <Heart />
+    case 'del':
+      return <Trash />
+    case 'add':
+      return <Plus />
+
     default:
       throw new Error('지원하지 않는 타입입니다.')
   }
