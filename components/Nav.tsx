@@ -5,42 +5,39 @@ import Logo from './Logo'
 import Login from './Login'
 import Logout from './Logout'
 import { useSession } from 'next-auth/react'
+import Img from '@/components/Img'
 
 export default function Nav() {
   const { data: session } = useSession()
 
   return (
-    <header className="border-b border-slate-200 dark:border-neutral-600">
-      <nav className="max-w-5xl flex px-3.5 py-3.5 mx-auto justify-between">
+    <header className="border-b shadow-[0px_3px_8px_0px_#00000024] dark:border-neutral-600">
+      <nav className="max-w-5xl flex px-3.5 py-3.5 mx-auto justify-between items-center">
         <h2>
           <Link href="/" className="logo">
             <Logo />
           </Link>
         </h2>
-        <ul className="flex shrink-0 gap-4">
-          {['write'].map((el) => (
-            <li key={el}>
-              <Link
-                href={`/${el}`}
-                className="text-sm text-slate-700 font-normal font-caveat"
-              >
-                {el.replace(/^[a-z]/, (char) => char.toUpperCase())}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {session && <span> {session?.user?.name} 님 환영합니다</span>}
 
         <div className="flex gap-2">
           {session ? (
             <>
               <Logout />
-              <Link href="/mypage">페이지</Link>
+              <Link href="/mypage" className="overflow-hidden rounded-full">
+                <Img
+                  width="6"
+                  height="6"
+                  src={session?.user?.image}
+                  alt={session?.user?.name}
+                />
+              </Link>
             </>
           ) : (
             <>
               <Login />
-              <Link href="/register">등록</Link>
+              <Link href="/register" className="font-caveat">
+                Regi
+              </Link>
             </>
           )}
         </div>

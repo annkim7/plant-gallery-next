@@ -54,7 +54,7 @@ export default function ListItem({ info }: ListItemProps) {
           loader={<Loading />}
         >
           <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+            columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
           >
             <Masonry>
               {scrollData.map((el) => (

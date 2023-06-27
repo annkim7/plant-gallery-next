@@ -3,5 +3,9 @@ type Props = {
 }
 
 export default function Label({ label }: Props) {
-  return <h3 className="my-3 text-base font-medium text-slate-600">{label}</h3>
+  return (
+    <h3 className="col-span-full my-3 text-base font-medium text-slate-600">
+      {label}
+    </h3>
+  )
 }

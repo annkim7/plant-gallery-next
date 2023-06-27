@@ -4,6 +4,7 @@ import { useEditComment, useDeleteComment } from '@/hook/comment'
 import useInput from '@/hook/input'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
+import IconBtn from '@/components/IconBtn'
 
 interface CommItemProps {
   datum: CommentData
@@ -34,28 +35,19 @@ export default function CommItem({ datum }: CommItemProps) {
   }
 
   return (
-    <div className="w-full">
-      <button
-        type="button"
-        onClick={handleInput}
-        className="text-slate-400 text-xs"
-      >
-        수정
-      </button>
-      <button
-        type="button"
-        onClick={() => handleCommDel(`${datum._id}`)}
-        className="text-slate-400 text-xs"
-      >
-        삭제
-      </button>
+    <>
+      <div className="shrink-0">
+        <IconBtn style="edit" func={handleInput} />
+        <IconBtn style="del" func={() => handleCommDel(`${datum._id}`)} />
+      </div>
+
       {active && (
-        <div>
-          <Input label="댓글 수정" values={commBind} />
-          <Button label="확인" style="border" func={handleCommEdit} />
-          <Button label="닫기" style="border" func={handleInput} />
+        <div className="grid mb-3 w-full grid-cols-7 rounded">
+          <Input label="댓글 수정" values={commBind} style="with-button" />
+          <Button label="확인" style="no-round" func={handleCommEdit} />
+          <Button label="닫기" style="half-round" func={handleInput} />
         </div>
       )}
-    </div>
+    </>
   )
 }

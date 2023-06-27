@@ -8,8 +8,9 @@ export default function Logout() {
       onClick={() => {
         signOut({ callbackUrl: process.env.NEXT_PUBLIC_BASE_FETCH_URL })
       }}
+      className="font-caveat"
     >
-      로그아웃
+      LogOut
     </button>
   )
 }
