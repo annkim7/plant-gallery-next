@@ -1,8 +1,9 @@
+import { ListData } from '@/helpers/fetch'
 import { atom } from 'recoil'
 
-const userState = atom({
-  key: 'userState',
-  default: {},
+const dataState = atom<ListData[]>({
+  key: 'dataState',
+  default: [],
 })
 
-export { userState }
+export { dataState }
