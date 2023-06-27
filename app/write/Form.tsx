@@ -42,7 +42,7 @@ export default function Form({ info }: FormProps) {
       </div>
 
       <div className="flex mt-10 mb-6 justify-center">
-        <Button label="등록" type="submit" />
+        <Button label="등록" style="square" />
       </div>
     </form>
   )

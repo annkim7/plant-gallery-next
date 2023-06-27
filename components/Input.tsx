@@ -1,3 +1,5 @@
+import Label from './Label'
+
 interface InputProps {
   label: string
   type?: 'text' | 'password'
@@ -10,7 +12,7 @@ interface InputProps {
 export default function Input({ label, type, values }: InputProps) {
   return (
     <>
-      <h3 className="my-3 text-base font-medium text-slate-600">{label}</h3>
+      <Label label={label} />
       <input
         {...values}
         type={type ? type : 'text'}

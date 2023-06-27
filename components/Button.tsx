@@ -1,16 +1,16 @@
-type ButtonStyleType = 'submit' | 'button' | 'reset'
+type ButtonStyleType = 'round' | 'border' | 'square'
 
 const handleButtonStyleType = (type: ButtonStyleType) => {
   switch (type) {
-    case 'submit':
+    case 'square':
       return `
-        w-16 p-1.5 bg-blue-400 text-white text-xs rounded-sm
+      text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800
       `
-    case 'button':
+    case 'border':
       return `
         text-slate-400 text-sm
       `
-    case 'reset':
+    case 'round':
       return `
         w-16 p-1.5 bg-gray-400 text-white text-xs rounded-sm
       `
@@ -20,14 +20,18 @@ const handleButtonStyleType = (type: ButtonStyleType) => {
 }
 
 interface ButtonProps {
-  type: 'button' | 'submit' | 'reset'
   label: string
+  style: ButtonStyleType
   func?: (e: any) => void
 }
 
-export default function Button({ type, label, func }: ButtonProps) {
+export default function Button({ label, style, func }: ButtonProps) {
   return (
-    <button type={type} onClick={func} className={handleButtonStyleType(type)}>
+    <button
+      type={func ? 'button' : 'submit'}
+      onClick={func}
+      className={handleButtonStyleType(style)}
+    >
       {label}
     </button>
   )

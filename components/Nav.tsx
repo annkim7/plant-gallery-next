@@ -18,7 +18,7 @@ export default function Nav() {
           </Link>
         </h2>
         <ul className="flex shrink-0 gap-4">
-          {['list', 'write', 'mypage', 'register'].map((el) => (
+          {['write'].map((el) => (
             <li key={el}>
               <Link
                 href={`/${el}`}
@@ -30,7 +30,20 @@ export default function Nav() {
           ))}
         </ul>
         {session && <span> {session?.user?.name} 님 환영합니다</span>}
-        {session ? <Logout /> : <Login />}
+
+        <div className="flex gap-2">
+          {session ? (
+            <>
+              <Logout />
+              <Link href="/mypage">페이지</Link>
+            </>
+          ) : (
+            <>
+              <Login />
+              <Link href="/register">등록</Link>
+            </>
+          )}
+        </div>
       </nav>
     </header>
   )

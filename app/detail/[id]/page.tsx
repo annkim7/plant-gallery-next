@@ -16,9 +16,5 @@ export default async function Detail(props: DetailProps) {
 
   let session = await getServerSession(authOptions)
 
-  return (
-    <article className="py-8 px-2.5">
-      <Item id={props.params.id} info={session} />
-    </article>
-  )
+  return <Item id={props.params.id} info={session} />
 }
