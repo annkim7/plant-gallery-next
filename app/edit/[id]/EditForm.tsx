@@ -45,7 +45,7 @@ export default function EditForm({ datum, info }: EditFormProps) {
       </div>
 
       <div className="flex mt-6 mb-10 justify-center">
-        <Button label="수정" type="submit" />
+        <Button label="수정" style="square" />
       </div>
     </form>
   )

@@ -1,8 +1,9 @@
 'use client'
 
-import { useGetMyPost } from '@/hook/mypage'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import { useGetMyPost } from '@/hook/mypage'
+import Label from '@/components/Label'
 
 export default function List() {
   const { data: session } = useSession()
@@ -10,7 +11,7 @@ export default function List() {
 
   return (
     <div>
-      <h3>작성한 글 리스트</h3>
+      <Label label="작성한 글 리스트" />
       {data?.map((el) => (
         <div key={`${el._id}`}>
           <Link href={`/detail/${el._id}`}>{el.title}</Link>

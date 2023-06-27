@@ -1,5 +1,6 @@
 import { useEditLike, useGetLike } from '@/hook/like'
 import { signIn } from 'next-auth/react'
+import IconBtn from './IconBtn'
 
 interface LikeProps {
   id: string
@@ -17,15 +18,13 @@ export default function Like({ id, access }: LikeProps) {
   }
 
   return (
-    <div>
-      <span>
+    <div className="flex items-center gap-1">
+      <IconBtn style="heart" func={access ? handleLike : () => signIn()} />
+      <span className="text-xs">
         {data?.map((el) => el.author)[0]
           ? data?.map((el) => el.author)[0].length
           : '0'}
       </span>
-      <button type="button" onClick={access ? handleLike : () => signIn()}>
-        하트
-      </button>
     </div>
   )
 }

@@ -26,7 +26,7 @@ export const useAddItem = () => {
   return useMutation(addItem, {
     onSuccess: () => {
       queryClient.invalidateQueries(['list'])
-      router.push('/list')
+      router.push('/')
     },
     onError: ({ message }) => {
       console.log(message)
@@ -41,7 +41,7 @@ export const useEditItem = () => {
   return useMutation(editItem, {
     onSuccess: () => {
       queryClient.invalidateQueries(['list'])
-      router.push('/list')
+      router.push('/')
     },
     onError: ({ message }) => {
       console.log(message)
@@ -56,7 +56,7 @@ export const useDeleteItem = () => {
   return useMutation(deleteItem, {
     onSuccess: () => {
       queryClient.invalidateQueries(['list'])
-      router.push('/list')
+      router.push('/')
     },
     onError: ({ message }) => {
       console.log(message)
