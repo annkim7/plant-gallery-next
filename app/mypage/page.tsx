@@ -12,12 +12,12 @@ export default async function Mypage() {
   return (
     <Box label="마이페이지">
       {session ? (
-        <>
+        <div className="py-3 px-3">
           <MyInfo />
           <MyList />
           <MyComm />
           <MyLike />
-        </>
+        </div>
       ) : (
         <div>로그인해주세요!</div>
       )}

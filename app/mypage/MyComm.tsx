@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { useGetMyComm } from '@/hook/mypage'
 import Label from '@/components/Label'
+import Board from '@/components/Board'
 
 export default function MyComm() {
   const { data: session } = useSession()
@@ -13,9 +13,11 @@ export default function MyComm() {
     <div>
       <Label label="작성한 댓글 리스트" />
       {data?.map((el) => (
-        <div key={`${el._id}`}>
-          <Link href={`/detail/${el.parent}`}>{el.content}</Link>
-        </div>
+        <Board
+          key={`${el._id}`}
+          src={`/detail/${el.parent}`}
+          title={el.content}
+        />
       ))}
     </div>
   )

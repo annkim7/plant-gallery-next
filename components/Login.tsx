@@ -8,8 +8,9 @@ export default function Login() {
       onClick={() => {
         signIn()
       }}
+      className="font-caveat"
     >
-      로그인
+      LogIn
     </button>
   )
 }
