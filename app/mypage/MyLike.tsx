@@ -13,7 +13,11 @@ export default function MyLike() {
     <div>
       <Label label="좋아요한 글 리스트" />
       {data?.map((el) => (
-        <Board key={`${el._id}`} src={`/detail/${el._id}`} title={el.title}/>
+        <Board
+          key={`${el._id}`}
+          src={`/detail/${el.parent}`}
+          title={el.title}
+        />
       ))}
     </div>
   )
