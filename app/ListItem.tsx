@@ -18,7 +18,7 @@ interface ListItemProps {
 
 export default function ListItem({ info }: ListItemProps) {
   const { data, isLoading } = useGetList()
-  const limit = 8
+  const limit = 12
   const [page, setPage] = useState(1)
   const [scroll, setScrollState] = useRecoilState(dataState)
 
@@ -48,7 +48,10 @@ export default function ListItem({ info }: ListItemProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
-
+  if (data === undefined) return
+  console.log(scroll.length)
+  console.log(data?.length)
+  console.log(scroll.length >= data?.length)
   return (
     <>
       {isLoading && <Loading />}
@@ -57,7 +60,7 @@ export default function ListItem({ info }: ListItemProps) {
           dataLength={scroll.length}
           next={sliceData}
           hasMore={true}
-          loader={<Loading />}
+          loader={scroll.length >= data.length ? null : <Loading />}
         >
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
