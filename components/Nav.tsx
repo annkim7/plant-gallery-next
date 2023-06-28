@@ -12,7 +12,7 @@ export default function Nav() {
 
   return (
     <header className="border-b shadow-[0px_3px_8px_0px_#00000024] dark:border-neutral-600">
-      <nav className="max-w-5xl flex px-3.5 py-3.5 mx-auto justify-between items-center">
+      <nav className="max-w-5xl flex px-5 py-3.5 mx-auto justify-between items-center">
         <h2>
           <Link href="/" className="logo">
             <Logo />

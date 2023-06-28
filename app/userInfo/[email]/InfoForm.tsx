@@ -31,7 +31,7 @@ export default function InfoForm() {
   return (
     <form onSubmit={handleEdit}>
       <Input label="닉네임" values={nameBind} />
-      <Input label="비밀번호" values={passBind} />
+      <Input label="비밀번호" values={passBind} type="password" />
       <div className="flex mt-6 items-center justify-center">
         <Img
           width="auto"
