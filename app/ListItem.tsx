@@ -48,10 +48,7 @@ export default function ListItem({ info }: ListItemProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
-  if (data === undefined) return
-  console.log(scroll.length)
-  console.log(data?.length)
-  console.log(scroll.length >= data?.length)
+
   return (
     <>
       {isLoading && <Loading />}
