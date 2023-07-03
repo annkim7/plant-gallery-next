@@ -26,7 +26,7 @@ export default function MyInfo() {
   return (
     <>
       <section className="grid my-4 pb-4 grid-cols-5 grid-rows-3 items-center border-b-2 border-zinc-200 dark:border-neutral-600">
-        <div className="overflow-hidden w-16 h-16 rounded-full col-span-1 row-span-3">
+        <div className="overflow-hidden w-16 h-16 rounded-full col-span-5 mx-auto row-span-3 sm:col-span-1">
           <Img
             width="16"
             height="16"
@@ -39,7 +39,7 @@ export default function MyInfo() {
           { name: '이메일', value: session?.user?.email },
           { name: '닉네임', value: session?.user?.name },
         ].map((el) => (
-          <div className="col-span-4 row-span-1" key={el.name}>
+          <div className="col-span-4 row-span-1 break-all" key={el.name}>
             <strong className="text-base font-bold text-blue-500">
               {el.name}
             </strong>

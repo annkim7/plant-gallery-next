@@ -3,6 +3,7 @@
 import { useGetItem } from '@/hook/post'
 import EditForm from './EditForm'
 import { Session } from 'next-auth'
+import Loading from '@/app/loading'
 
 interface ItemProps {
   id: string
@@ -10,7 +11,12 @@ interface ItemProps {
 }
 
 export default function EditItem({ id, info }: ItemProps) {
-  const { data } = useGetItem(id)
+  const { data, isLoading } = useGetItem(id)
 
-  return <>{data && <EditForm datum={data} info={info} />} </>
+  return (
+    <>
+      {isLoading && <Loading />}
+      {data && <EditForm datum={data} info={info} />}
+    </>
+  )
 }
