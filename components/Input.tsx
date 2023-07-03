@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import useTest from '@/hook/regex'
 import Label from './Label'
 
 type InputStyleType = 'original' | 'with-button'
@@ -28,6 +30,15 @@ interface InputProps {
 }
 
 export default function Input({ label, style, type, values }: InputProps) {
+  const { value } = values
+  const [setValue, message] = useTest(value)
+
+  useEffect(() => {
+    if (type === 'password') {
+      setValue(value)
+    }
+  }, [type, setValue, value])
+
   return (
     <>
       <Label label={label} />
@@ -38,6 +49,7 @@ export default function Input({ label, style, type, values }: InputProps) {
         placeholder={`${label}을 입력해주세요`}
         className={handleInputStyleType(!style ? 'original' : style)}
       />
+      {message && <div>{message}</div>}
     </>
   )
 }
