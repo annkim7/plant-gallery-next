@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useGetMember } from './member'
 
 export const usePassTest = (initial: string) => {
   const [value, setValue] = useState(initial)
@@ -26,16 +27,19 @@ export const usePassTest = (initial: string) => {
 export const useEmailTest = (initial: string) => {
   const [value, setValue] = useState(initial)
   const [message, setMessage] = useState('')
+  const { data } = useGetMember(value)
 
   useEffect(() => {
     const check = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/
 
     if (value && !check.test(value)) {
       setMessage('이메일 형식이 아닙니다')
+    } else if (value && data) {
+      setMessage('중복된 이메일입니다')
     } else {
       setMessage('')
     }
-  }, [value])
+  }, [value, data])
 
   return [setValue, message] as const
 }
