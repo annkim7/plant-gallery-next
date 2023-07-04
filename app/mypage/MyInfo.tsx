@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { useDeleteMember } from '@/hook/member'
 import useModal from '@/hook/modal'
