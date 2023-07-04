@@ -8,6 +8,7 @@ export const useGetMember = (email: string) => {
     queryKey: ['member', email],
     queryFn: () => getMember(email),
     staleTime: 10 * 1000,
+    enabled: !!email,
   })
 }
 

@@ -24,6 +24,7 @@ export default function InfoForm() {
 
   const handleEdit: React.FormEventHandler = async (e) => {
     e.preventDefault()
+
     if (!name || !password || passMessage) {
       handleModal()
     } else {
