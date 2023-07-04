@@ -1,10 +1,9 @@
-type MemberData = {
+export type MemberData = {
   name: string
   email: string | null | undefined
   password: string
   image: string | null | undefined
 }
-
 
 export const getMember = async (email: string) => {
   const res = await fetch(

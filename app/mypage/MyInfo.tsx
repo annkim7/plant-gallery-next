@@ -55,7 +55,14 @@ export default function MyInfo() {
         </div>
       </section>
 
-      {modal && <Modal func={handleModal} action={handleDelete} />}
+      {modal && (
+        <Modal
+          label="회원 탈퇴"
+          text="탈퇴하시겠습니까?"
+          func={handleModal}
+          action={handleDelete}
+        />
+      )}
     </>
   )
 }
