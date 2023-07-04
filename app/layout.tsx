@@ -19,7 +19,10 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="text-base sm:text-sm md:text-lg lg:text-lg xl:text-xl"
+    >
       <body
         className={(inter.className, fontStyle)}
         suppressHydrationWarning={true}
