@@ -1,6 +1,6 @@
-import { Heart, Pencil, Trash, Plus } from './Icon'
+import { Heart, Pencil, Trash, Plus, FullHeart } from './Icon'
 
-type IconStyleType = 'heart' | 'edit' | 'del' | 'add'
+type IconStyleType = 'heart' | 'full-heart' | 'edit' | 'del' | 'add'
 
 const handleIconBtnStyleType = (type: IconStyleType) => {
   switch (type) {
@@ -8,6 +8,8 @@ const handleIconBtnStyleType = (type: IconStyleType) => {
       return <Pencil />
     case 'heart':
       return <Heart />
+    case 'full-heart':
+      return <FullHeart />
     case 'del':
       return <Trash />
     case 'add':

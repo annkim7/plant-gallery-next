@@ -1,5 +1,5 @@
 import { useEditLike, useGetLike } from '@/hook/like'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import IconBtn from './IconBtn'
 
 interface LikeProps {
@@ -10,6 +10,7 @@ interface LikeProps {
 export default function Like({ id, access }: LikeProps) {
   const { data } = useGetLike(id)
   const { mutate } = useEditLike()
+  const { data: session } = useSession()
 
   const handleLike = () => {
     mutate({
@@ -17,14 +18,16 @@ export default function Like({ id, access }: LikeProps) {
     })
   }
 
+  const likeArray = data?.map((el) => el.author)[0]
+  const check = likeArray?.filter((el) => el === session?.user?.email)[0]
+
   return (
     <div className="flex items-center gap-1">
-      <IconBtn style="heart" func={access ? handleLike : () => signIn()} />
-      <span className="text-xs">
-        {data?.map((el) => el.author)[0]
-          ? data?.map((el) => el.author)[0].length
-          : '0'}
-      </span>
+      <IconBtn
+        style={check ? 'full-heart' : 'heart'}
+        func={access ? handleLike : () => signIn()}
+      />
+      <span className="text-xs">{likeArray ? likeArray.length : '0'}</span>
     </div>
   )
 }

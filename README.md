@@ -8,7 +8,28 @@ Next.js 강좌를 듣고 배운 것을 복습해볼 겸, masonry 갤러리 레�
 
 ![plant-gallery](https://github.com/annkim7/plant-gallery-next/assets/67787776/ed640b84-1093-46e1-b932-f0d872b00030)
 
-Next, Typescript, React-query, Recoil, Next-auth-Kakao, Tailwind, aws-sdk, MongoDB
+**_🥦 Next_**
+MongoDB와 연결하여 서버 컴포넌트 구성
+서버 쪽도 Type을 적용하여 컴파일시 에러를 줄이도록 노력했다
+
+**_🥦 Next-auth_**
+authOptions providers중 kakao를 연결,
+일반 로그인은 클라이언트 컴포넌트에서 처리하도록 session으로 따로 provider 적용
+next-auth type을 적용하여 개발단계에서 에러 처리 가능하도록 하였다
+
+**_🥦 React-query_**
+hydrate를 사용, 캐시 데이터를 이용하여 좀더 빠른 로딩을 추구
+각 api별로 custom hook을 사용하여 모듈화시켜 유지보수성을 높임
+
+**_🥦 Recoil_**
+masonry 레이아웃 적용시 전체 데이터 갯수를 조정하도록 함
+
+**_🥦 Tailwind_**
+config를 추가하여 font-style을 커스텀
+
+**_🥦 AWS-SDK_**
+AWS S3를 연결하여 업로드한 이미지를 저장, 미리보기 기능, DB에 주소를 저장하여
+데이터를 불러들이는 것에 무리가 없도록 설정
 
 ---
 
