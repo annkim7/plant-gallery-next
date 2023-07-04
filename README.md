@@ -1,18 +1,16 @@
 # Plant Gallery
 
----
-
 ## 프로젝트 소개
 
-Next.js 강좌를 듣고 배운 것을 복습해볼 겸, masonry 갤러리 레이아웃을 구현해보고 싶어서 작업해보게 되었다 Next-auth를 통해 session과 token으로 일반 회원 가입, 카카오 회원 가입을 구현했고 게시글이나 댓글 등을 회원전용으로 적용
-
----
+Next.js 강좌를 듣고 배운 것을 복습해볼 겸, masonry 갤러리 레이아웃을 구현해보고 싶어서 작업해보게 되었다 Next-auth를 통해 session과 token으로 일반 회원 가입, 카카오 회원 가입을 구현했고 게시글이나 댓글 등을 회원전용으로 적용해 마이페이지에서 자신이 활동한 것을 모아 볼 수 있게 만들었다
 
 ### Skill
 
-![plant-gallery](https://github.com/annkim7/plant-gallery-next/assets/67787776/e22dd2c0-8db6-4079-af66-be2a17d36a84)
+![plant-gallery](https://github.com/annkim7/plant-gallery-next/assets/67787776/ed640b84-1093-46e1-b932-f0d872b00030)
 
 Next, Typescript, React-query, Recoil, Next-auth-Kakao, Tailwind, aws-sdk, MongoDB
+
+---
 
 ### Sample
 
