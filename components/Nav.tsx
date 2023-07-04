@@ -23,7 +23,10 @@ export default function Nav() {
           {session ? (
             <>
               <Logout />
-              <Link href="/mypage" className="overflow-hidden rounded-full">
+              <Link
+                href="/mypage"
+                className="overflow-hidden rounded-full w-6 h-6"
+              >
                 <Img
                   width="6"
                   height="6"
