@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import useTest from '@/hook/regex'
 import Label from './Label'
 
 type InputStyleType = 'original' | 'with-button'
