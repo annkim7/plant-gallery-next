@@ -32,8 +32,7 @@
     "react-responsive-masonry": "^2.1.7",
     "recoil": "^0.7.7",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4",
-    "word-wrap": "^1.2.3"
+    "typescript": "5.0.4"
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
